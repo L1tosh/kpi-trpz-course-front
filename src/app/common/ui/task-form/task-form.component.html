@@ -1,0 +1,55 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4">{{ isEditMode ? 'Редактирование задачи' : 'Создание новой задачи' }}</h2>
+
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <!-- Поле для названия задачи -->
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Название задачи</label>
+            <input
+                    type="text"
+                    id="title"
+                    [(ngModel)]="task.title"
+                    name="title"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+        </div>
+
+        <!-- Поле для описания задачи -->
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Описание</label>
+            <textarea
+                    id="description"
+                    [(ngModel)]="task.description"
+                    name="description"
+                    required
+                    rows="4"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            ></textarea>
+        </div>
+
+        <!-- Остальные поля -->
+        <div class="mb-4">
+            <label for="complexity" class="block text-sm font-medium text-gray-700">Сложность</label>
+            <input
+                    type="number"
+                    id="complexity"
+                    [(ngModel)]="task.complexity"
+                    name="complexity"
+                    min="1"
+                    max="10"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+        </div>
+
+        <!-- Кнопка для отправки -->
+        <button
+                type="submit"
+                [disabled]="taskForm.invalid"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+            {{ isEditMode ? 'Сохранить изменения' : 'Создать задачу' }}
+        </button>
+    </form>
+</div>
