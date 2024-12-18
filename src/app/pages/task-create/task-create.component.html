@@ -1,0 +1,107 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4">Создание новой задачи</h2>
+
+    <form (ngSubmit)="createTask()" #taskForm="ngForm">
+        <!-- Поле для названия задачи -->
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Название задачи</label>
+            <input
+                    type="text"
+                    id="title"
+                    [(ngModel)]="task.title"
+                    name="title"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+        </div>
+
+        <!-- Поле для описания задачи -->
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Описание</label>
+            <textarea
+                    id="description"
+                    [(ngModel)]="task.description"
+                    name="description"
+                    required
+                    rows="4"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            ></textarea>
+        </div>
+
+        <!-- Поле для сложности задачи -->
+        <div class="mb-4 flex space-x-4">
+            <div class="flex-1">
+                <label for="complexity" class="block text-sm font-medium text-gray-700">Сложность</label>
+                <input
+                        type="number"
+                        id="complexity"
+                        [(ngModel)]="task.complexity"
+                        name="complexity"
+                        min="1"
+                        max="10"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+            </div>
+
+            <!-- Поля для времени начала и завершения задачи -->
+            <div class="flex-1">
+                <label for="startTime" class="block text-sm font-medium text-gray-700">Дата начала</label>
+                <input
+                        type="datetime-local"
+                        id="startTime"
+                        [(ngModel)]="task.startTime"
+                        name="startTime"
+                        required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+            </div>
+
+            <div class="flex-1">
+                <label for="endTime" class="block text-sm font-medium text-gray-700">Дата завершения</label>
+                <input
+                        type="datetime-local"
+                        id="endTime"
+                        [(ngModel)]="task.endTime"
+                        name="endTime"
+                        required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+            </div>
+        </div>
+
+        <!-- Поле для типа задачи -->
+        <div class="mb-4">
+            <label for="taskType" class="block text-sm font-medium text-gray-700">Тип задачи</label>
+            <input
+                    type="text"
+                    id="taskType"
+                    [(ngModel)]="task.taskType"
+                    name="taskType"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+        </div>
+
+        <!-- Поле для статуса задачи -->
+        <div class="mb-4">
+            <label for="taskStatus" class="block text-sm font-medium text-gray-700">Статус задачи</label>
+            <input
+                    type="text"
+                    id="taskStatus"
+                    [(ngModel)]="task.taskStatus"
+                    name="taskStatus"
+                    required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+        </div>
+
+        <!-- Кнопка для отправки формы -->
+        <button
+                type="submit"
+                [disabled]="taskForm.invalid"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+            Создать задачу
+        </button>
+    </form>
+</div>

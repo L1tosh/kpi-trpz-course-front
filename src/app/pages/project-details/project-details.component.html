@@ -1,0 +1,50 @@
+<div *ngIf="loading" class="text-center text-lg text-ordinaryBlue py-4">Загрузка...</div>
+<div *ngIf="error" class="text-center text-lg text-red-500 py-4">{{ error }}</div>
+
+<div *ngIf="project" class="p-6 bg-white shadow-lg rounded-lg flex flex-col lg:flex-row">
+    <!-- Основная информация о проекте -->
+    <div class="project-info flex-1 mb-6 lg:mb-0 lg:mr-6">
+        <h2 class="text-2xl font-semibold text-darkBlue">{{ project.name }}</h2>
+        <p class="text-base text-ordinaryBlue mt-2">{{ project.description }}</p>
+    </div>
+
+    <!-- Информация о работниках в правой колонке -->
+    <div class="users flex-1">
+        <h3 class="text-xl font-semibold text-darkBlue mb-4">Владелец:</h3>
+        <ul class="list-none mb-6">
+            <li>
+                <a [routerLink]="['/users', project.owner]" class="text-selectedBlue hover:underline">
+                    {{ owner?.name }} {{owner?.surname }}
+                </a>
+            </li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-darkBlue mb-4">Работники:</h3>
+        <ul class="list-none">
+            <li *ngFor="let worker of workers" class="mb-2">
+                <a [routerLink]="['/users', worker.id]" class="text-selectedBlue hover:underline">
+                    {{ worker.name }} {{ worker.surname }}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Меню с переходами -->
+
+</div>
+
+<div class="menu space-x-4 mt-6 m-auto">
+    <button (click)="navigateToTasks()"
+            class="px-4 py-2 bg-ordinaryBlue text-white rounded-lg hover:bg-selectedBlue">
+        Посмотреть все таски
+    </button>
+    <button (click)="navigateToSprints()"
+            class="px-4 py-2 bg-ordinaryBlue text-white rounded-lg hover:bg-selectedBlue">
+        Посмотреть все спринты
+    </button>
+    <button (click)="navigateToBoards()"
+            class="px-4 py-2 bg-ordinaryBlue text-white rounded-lg hover:bg-selectedBlue">
+        Перейти в окно с досками
+    </button>
+</div>
+
